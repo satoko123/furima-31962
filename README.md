@@ -42,7 +42,7 @@
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
 | postal_code    | string     | null: false                    |
-| region         | string     | null: false                    |
+| region_id      | string     | null: false                    |
 | city           | string     | null: false                    |
 | address_line_1 | string     | null: false                    |
 | address_line_2 | string     |                                |

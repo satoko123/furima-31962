@@ -44,8 +44,8 @@
 | postal_code    | string     | null: false                    |
 | region_id      | integer    | null: false                    |
 | city           | string     | null: false                    |
-| address_line_1 | string     | null: false                    |
-| address_line_2 | string     |                                |
+| street_address | string     | null: false                    |
+| building       | string     |                                |
 | phone_number   | string     | null: false                    |
 | purchase       | references | null: false, foreign_key: true |
 

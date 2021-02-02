@@ -59,7 +59,6 @@
 | -------------- | ---------- | ------------------------------ |
 | user           | references | null: false, foreign_key: true |
 | product        | references | null: false, foreign_key: true |
-| address        | references | null: false, foreign_key: true |
 
 ### Association
 

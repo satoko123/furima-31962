@@ -51,7 +51,7 @@
 
 ### Association
 
-- has_many :purchases
+- belongs_to :purchase
 
 ## purchases テーブル
 

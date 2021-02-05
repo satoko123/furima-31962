@@ -8,7 +8,8 @@ RSpec.describe User, type: :model do
 
   describe 'ユーザー新規登録' do
     context '内容に問題ない場合' do
-      it 'nicknameとemail、password、password_confirmation、last_name、first_name、birthday、last_name_kana、first_name_kanaが存在すれば登録できる' do
+      it 'nicknameとemail、password、password_confirmation、last_name、first_name、birthday、last_name_kana、
+      first_name_kanaが存在すれば登録できる' do
         expect(@user).to be_valid
       end
     end
@@ -49,7 +50,7 @@ RSpec.describe User, type: :model do
         @user.password = 'ｕｓｅｒ１２'
         @user.password_confirmation = 'ｕｓｅｒ１２'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password Include both letters and numbers")
+        expect(@user.errors.full_messages).to include('Password Include both letters and numbers')
       end
 
       it 'passwordが5文字以下では登録できない' do
@@ -58,7 +59,7 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
-      
+
       it 'passwordに英数字以外が含まれている場合登録できない' do
         @user.password = 'use12あ'
         @user.password_confirmation = 'use12あ'

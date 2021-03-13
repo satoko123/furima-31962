@@ -15,15 +15,20 @@ RSpec.describe OrderForm, type: :model do
       end
     end
     context '内容に問題がある場合' do
+      it 'tokenが空では登録できない' do
+        @order_form.token = nil
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include("Token can't be blank")
+      end
       it 'postal_codeが空では保存できない' do
-        @order_form.postal_code = ''
+        @order_form.postal_code = nil
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include("Postal code can't be blank")
       end
       it 'postal_codeにハイフンがないと保存できない' do
         @order_form.postal_code = '1234567'
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include("Postal code Input correctly")
+        expect(@order_form.errors.full_messages).to include('Postal code Input correctly')
       end
       it 'region_idが空では保存できない' do
         @order_form.region_id = 1
@@ -48,12 +53,12 @@ RSpec.describe OrderForm, type: :model do
       it 'phone_numberにハイフンがあると保存できない' do
         @order_form.phone_number = '000-0000-0000'
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include("Phone number Input only number")
+        expect(@order_form.errors.full_messages).to include('Phone number Input only number')
       end
       it 'phone_numberが12桁以上だと保存できない' do
         @order_form.phone_number = '000000000000'
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include("Phone number Input only number")
+        expect(@order_form.errors.full_messages).to include('Phone number Input only number')
       end
     end
   end

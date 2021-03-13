@@ -4,7 +4,7 @@ RSpec.describe OrderForm, type: :model do
   before do
     @user = FactoryBot.create(:user)
     @item = FactoryBot.create(:item)
-    @order_form = FactoryBot.build(:order_form, user_id: @user.id , item_id: @item.id)
+    @order_form = FactoryBot.build(:order_form, user_id: @user.id, item_id: @item.id)
     sleep 0.2
   end
   describe '商品購入' do
@@ -70,6 +70,11 @@ RSpec.describe OrderForm, type: :model do
       end
       it 'phone_numberが12桁以上だと保存できない' do
         @order_form.phone_number = '000000000000'
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include('Phone number Input only number')
+      end
+      it 'phone_numberが全角数字だと保存できない' do
+        @order_form.phone_number = '０００００００００００'
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include('Phone number Input only number')
       end

@@ -14,7 +14,7 @@ class Item < ApplicationRecord
   validates :price, presence: true, inclusion: { in: 300..9_999_999, message: 'Out of setting range' },
                     format: { with: /\A\d+\z/, message: 'Half-width number' }
   belongs_to :user
-  has_one_attached :image
+  has_many_attached :images
   has_one :order
 
   extend ActiveHash::Associations::ActiveRecordExtensions

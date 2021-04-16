@@ -8,4 +8,6 @@ function price() {
     add_profit_dom.innerHTML = Math.floor(value_input - add_tax_dom.innerHTML);
   })
 } 
-window.addEventListener('load', price)
+if(document.URL.match( /new/ )) {
+  window.addEventListener('load', price)
+}

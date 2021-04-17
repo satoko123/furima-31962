@@ -25,9 +25,8 @@
 }
 
 .item-box-img {
-  height: auto;
-  width: 20%;
-  min-height: 500px;
+  width: 50vw;
+  height: 60vh;
   background-color: rgb(205, 202, 202);
   object-fit: contain;
 }

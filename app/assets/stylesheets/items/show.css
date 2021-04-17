@@ -1,11 +1,4 @@
 /* 商品の概要 */
-img{
-  object-fit: contain; 
-  width: 20%;
-  height: auto;
-
-}
-
 .item-show {
   background-color: #f8f8f8;
   width: 100vw;
@@ -32,8 +25,8 @@ img{
 }
 
 .item-box-img {
-  height: 50vh;
-  width: 60vw;
+  height: auto;
+  width: 20%;
   min-height: 500px;
   background-color: rgb(205, 202, 202);
   object-fit: contain;

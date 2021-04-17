@@ -16,12 +16,18 @@ app/assets/stylesheets/items/new.css %>
       <div class="weight-bold-text">
         出品画像
         <span class="indispensable">必須</span>
+        <div class="file">最大5枚までアップロードできます</div>
       </div>
-      <div class="click-upload">
-        <p>
-          クリックしてファイルをアップロード
-        </p>
-        <%= f.file_field :image, id:"item-image" %>
+      <div class="image">
+      <%# 画像プレビュー用のタグ作成 %>
+        <div id="image-list"></div>
+        <div class="click-upload">
+          <%= f.label :images, for:"item-image", class: "fa fa-file-image-o", id: "first-label" do %>
+            <%= f.file_field :images, name:"item[images][]", id:"item-image", style: "display: none;" %>
+            <div class="click">クリックして選択
+            </div>
+          <%end%>
+        </div>
       </div>
     </div>
     <%# /出品画像 %>

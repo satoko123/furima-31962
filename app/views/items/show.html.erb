@@ -10,7 +10,6 @@
       <% @item.images.each do |image| %>
         <%= image_tag image, class:"item-box-img" %>
       <% end %>
-      <%# <%= image_tag @item.image ,class:"item-box-img" %>
       <% if @item.order.present? %>
       <div class="sold-out">
         <span>Sold Out!!</span>

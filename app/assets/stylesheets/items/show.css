@@ -1,4 +1,10 @@
 /* 商品の概要 */
+img{
+  object-fit: contain; 
+  width: 20%;
+  height: auto;
+
+}
 
 .item-show {
   background-color: #f8f8f8;

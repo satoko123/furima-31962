@@ -129,7 +129,11 @@
         <li class='list'>
           <%= link_to item_path(item.id) do %>
           <div class='item-img-content'>
-            <%= image_tag item.image, class: "item-img" %>
+          <%# 投稿した1枚目のみを表示 %>
+          <% if item.images.count > 0 %>
+            <%= image_tag item.images.first, class: "item-img" %>
+          <%end%>
+          <%# 購入されたらsold outを表示 %>
             <% if item.order.present? %>
             <div class='sold-out'>
               <span>Sold Out!!</span>
@@ -152,6 +156,7 @@
           <% end %>
         </li>
       <% end %> 
+      <%# 出品がなければ表示 %>
       <% if @items.length == 0 %>
         <li class='list'>
           <%= link_to '#' do %>

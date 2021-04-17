@@ -25,10 +25,12 @@
 }
 
 .item-box-img {
+  display: block;
   width: 50vw;
   height: 60vh;
   background-color: rgb(205, 202, 202);
   object-fit: contain;
+  margin: 0 auto;
 }
 
 .item-price-box {

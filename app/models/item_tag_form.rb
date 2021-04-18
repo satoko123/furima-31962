@@ -1,14 +1,12 @@
-class TweetTagForm
+class ItemTagForm
   
   include ActiveModel::Model
-  attr_accessor :images, :item_name, :item_text, :category_id, :item_state_id,
+  attr_accessor :item_name, :item_text, :category_id, :item_state_id,
                 :paying_for_shipping_id, :shipping_area_id, :shipping_day_id, 
-                :price, :user_id, :tag_name
+                :price, :user_id, :tag_name, :images
 
   # tagモデルのバリデーション
-  with options presence: true do
-    validates :tag_name
-  end
+  validates :tag_name, presence: true
 
   # itemモデルのバリデーション
   validates :images, presence: true
@@ -30,8 +28,9 @@ class TweetTagForm
     item = Item.create(item_name: item_name, item_text: item_text, category_id: category_id,
                        item_state_id: item_state_id, paying_for_shipping_id: paying_for_shipping_id,
                        shipping_area_id: shipping_area_id,shipping_day_id: shipping_day_id,price: price,
-                       user_id: user_id,tag_name: tag_name)
-    tag = Tag.create(tag_name: tag_name)
+                       user_id: user_id,tag_name: tag_name,images: images)
+    tag = Tag.where(tag_name: tag_name).first_or_initialize
+    tag.save
     ItemTag.create(item_id: item.id, tag_id: tag.id)
   end
 end

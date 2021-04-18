@@ -73,9 +73,9 @@
 
 ## item_tags テーブル
 
-| Column             | Type        | Options                                      |         |
+| Column             | Type        | Options                                      |
 | ------------------ | ----------- | -------------------------------------------- |
-| item               | references  | null: false                                  |
+| item               | references  | null: false, foreign_key: true               |
 | tag                | references  | null: false, foreign_key: true, unique: true |
 
 ### Association

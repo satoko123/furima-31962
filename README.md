@@ -18,6 +18,7 @@
 - has_many :items
 - has_many :orders
 
+
 ## items テーブル
 
 | Column                 | Type       | Options                        |
@@ -36,6 +37,8 @@
 
 - belongs_to :user
 - has_one :order
+- has_many :tags, through: :item_tags
+- has_many :item_tag
 
 ## addresses テーブル
 
@@ -53,6 +56,7 @@
 
 - belongs_to :order
 
+
 ## orders テーブル
 
 | Column         | Type       | Options                        |
@@ -65,3 +69,30 @@
 - belongs_to :user
 - belongs_to :item
 - has_one :address
+
+
+## item_tags テーブル
+
+| Column             | Type        | Options                                      |         |
+| ------------------ | ----------- | -------------------------------------------- |
+| item               | references  | null: false                                  |
+| tag                | references  | null: false, foreign_key: true, unique: true |
+
+### Association
+
+- belongs_to :item
+- belongs_to :tag
+
+
+## tags テーブル
+
+| Column             | Type        | Options                                      |
+| ------------------ | ----------- | -------------------------------------------- |
+| tag_name           | string      | null: false, unique: true                    |
+
+### Association
+
+- has_many :items, through: :item_tags
+- has_many :tags, through: :item_tags
+
+

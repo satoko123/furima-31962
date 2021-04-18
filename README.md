@@ -38,7 +38,7 @@
 - belongs_to :user
 - has_one :order
 - has_many :tags, through: :item_tags
-- has_many :item_tag
+- has_many :item_tags
 
 ## addresses テーブル
 
@@ -93,6 +93,6 @@
 ### Association
 
 - has_many :items, through: :item_tags
-- has_many :tags, through: :item_tags
+- has_many :item_tags
 
 

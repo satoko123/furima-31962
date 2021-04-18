@@ -1,18 +1,4 @@
 class Item < ApplicationRecord
-  validates :images, presence: true
-  with_options presence: true do
-    validates :item_name
-    validates :item_text
-  end
-  with_options presence: true, numericality: { other_than: 1, message: 'select' } do
-    validates :category_id
-    validates :item_state_id
-    validates :paying_for_shipping_id
-    validates :shipping_area_id
-    validates :shipping_day_id
-  end
-  validates :price, presence: true, inclusion: { in: 300..9_999_999, message: 'Out of setting range' },
-                    format: { with: /\A\d+\z/, message: 'Half-width number' }
   belongs_to :user
   has_many_attached :images
   has_one :order

@@ -4,15 +4,17 @@ class Item < ApplicationRecord
     validates :item_name
     validates :item_text
   end
-  with_options presence: true, numericality: { other_than: 1, message: 'select' } do
+  with_options presence: true, numericality: { other_than: 1, message: 'を選択してください' } do
     validates :category_id
     validates :item_state_id
     validates :paying_for_shipping_id
     validates :shipping_area_id
     validates :shipping_day_id
   end
-  validates :price, presence: true, inclusion: { in: 300..9_999_999, message: 'Out of setting range' },
-                    format: { with: /\A\d+\z/, message: 'Half-width number' }
+  
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999,
+                                                    message: 'は指定された範囲(¥300~¥9,999,999)で設定してください' }
+  validates :price, numericality: { with: /\A\d+\z/, message: 'は半角数字で入力してください' }
   belongs_to :user
   has_many_attached :images
   has_one :order

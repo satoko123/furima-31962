@@ -120,10 +120,9 @@
     </ul>
   </div>
   <%# /FURIMAの特徴 %>
-
-  <%# 商品一覧 %>
-  <div class='item-contents'>
-        <%# 商品検索フォーム %>
+  <%# 商品検索フォーム %> 
+        <h2 class='form_title'>商品検索</h2>
+        <div class="search_form" >
         <%= search_form_for @p, url: items_search_path do |f| %>
           <%= f.label :item_name_cont, '商品名：' %>
           <%= f.search_field :item_name_cont, placeholder: "キーワードを入力" %>
@@ -140,9 +139,12 @@
           2500円以下
           <%= f.radio_button :price_lteq, '5000' %>
           5000円以下
-          <%= f.submit '検索' %>
+          <%= f.submit '検索', class: "submit" %>
         <% end %>
-        <%# /商品検索フォーム %>
+        </div>
+  <%# /商品検索フォーム %>
+  <%# 商品一覧 %>
+  <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
     <%= link_to '新規投稿商品', "#", class: "subtitle" %>
     <ul class='item-lists'>

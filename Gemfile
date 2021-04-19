@@ -68,3 +68,4 @@ gem 'payjp'
 gem "aws-sdk-s3", require: false
 gem 'font-awesome-rails'
 gem 'rails-i18n'
+gem 'ransack'

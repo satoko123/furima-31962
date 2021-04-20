@@ -1,0 +1,48 @@
+<%= render partial: "shared/header" %>
+<div class='main'>
+   <%# 商品一覧 %>
+  <div class='item-contents'>
+    <h2 class='title'>検索結果</h2>
+    <ul class='item-lists'>
+    <%# 検索結果の個数で条件分岐 %>
+    <% if @results.length !=0 %>
+      <% @results.each do |result| %>  
+        <li class='list'>
+          <%= link_to item_path(result.id) do %>
+          <div class='item-img-content'>
+          <%# 投稿した1枚目のみを表示 %>
+          <% if result.images.count > 0 %>
+            <%= image_tag result.images.first, class: "item-img" %>
+          <%end%>
+          <%# 購入されたらsold outを表示 %>
+            <% if result.order.present? %>
+            <div class='sold-out'>
+              <span>Sold Out!!</span>
+            </div>
+            <% end %>
+          </div>
+          <% end %>
+          <div class='item-info'>
+            <h3 class='item-name'>
+              <%= result.item_name %>
+            </h3>
+            <div class='item-price'>
+              <span><%= result.price %>円<br><%= result.paying_for_shipping.name %></span>
+              <div class='star-btn'>
+                <%= image_tag "star.png", class:"star-icon" %>
+                <span class='star-count'>0</span>
+              </div>
+            </div>
+          </div>
+        </li>
+      <% end %> 
+      <%# 検索結果がなければ表示 %>
+    <% else %>
+該当する商品はありません
+    <% end %>
+    </ul>
+  </div>
+  <%# /商品一覧 %>
+<%= link_to 'トップページへ戻る', root_path %>
+</div>
+<%= render partial: "shared/footer" %>

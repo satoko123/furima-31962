@@ -2,6 +2,8 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :move_to_index, only: [:edit, :update, :destroy]
+  before_action :search_product, only: [:index, :search]
+
   def index
     @items = Item.order('created_at DESC')
   end
@@ -38,6 +40,10 @@ class ItemsController < ApplicationController
     redirect_to action: :index
   end
 
+  def search
+    @results = @p.result  #検索結果を取得
+  end
+
   private
 
   def item_params
@@ -52,4 +58,13 @@ class ItemsController < ApplicationController
   def move_to_index
     redirect_to root_path if @item.order.present? || current_user.id != @item.user_id
   end
+
+  def search_product
+    @p = Item.ransack(params[:q])  # 検索オブジェクトを生成
+  end
+
+  # def search_product
+  #   @p = Item.ransack(params[:q])  # 検索オブジェクトを生成
+  # end
+
 end

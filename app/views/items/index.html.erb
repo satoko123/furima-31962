@@ -1,4 +1,5 @@
 <%= render partial: "shared/header" %>
+
 <div class='main'>
 
   <%# 画面上部の「人生を変えるフリマアプリ」帯部分 %>
@@ -119,7 +120,39 @@
     </ul>
   </div>
   <%# /FURIMAの特徴 %>
-
+  <%# 商品検索フォーム %> 
+        <h2 id='anchor', class='form_title'>商品検索</h2>
+        <div class="search_form" >
+        <%= search_form_for @p, url: items_search_path do |f| %>
+          <div class='form_contents'>
+            <%= f.label :item_name_cont, '商品名', class: "search_content"%>
+            <%= f.search_field :item_name_cont, placeholder: "キーワードを入力" %>
+          </div>
+          <div class='form_contents'>
+            <%= f.label :category_id_eq, 'カテゴリー', class: "search_content"%>
+            <%= f.collection_select :category_id_eq, Category.where.not(id: 1), :id, :name, include_blank: "指定なし" %></div>
+          <div class='form_contents'>
+            <%= f.label :item_state_id_eq, '商品の状態', class: "search_content"%>
+            <%= f.collection_select :item_state_id_eq, ItemState.where.not(id: 1), :id, :name, include_blank: "指定なし" %></div>
+          <div class='form_contents'>
+            <%= f.label :price, '価格', class: "search_content"%>
+            <div>
+              <%= f.radio_button :price_lteq, '' %>
+                指定なし
+              <%= f.radio_button :price_lteq, '1000' %>
+                1000円以下
+              <%= f.radio_button :price_lteq, '2500' %>
+                2500円以下
+              <%= f.radio_button :price_lteq, '5000' %>
+                5000円以下
+            </div>
+          </div>
+            <%= f.button :type => "submit", class: "submit" do%>
+              <i class="fa fa-search" aria-hidden="true"></i>検索
+            <%end%>
+        <% end %>
+        </div>
+  <%# /商品検索フォーム %>
   <%# 商品一覧 %>
   <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
